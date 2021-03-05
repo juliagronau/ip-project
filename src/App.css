@@ -1,8 +1,9 @@
 body {
   display: flex;
+  justify-content: center;
 }
 
 .leaflet-container {
-  width: 30rem;
+  width: auto;
   height: 20rem;
 }
