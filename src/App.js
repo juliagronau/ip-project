@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
+import {useState, useEffect} from 'react';
 
 function App() {
+let url = 'https://geo.ipify.org/api/v1?apiKey=at_w8b2xFtEcMlHvyvoYFKB50tT6p9X0';
+const [loading, setIsLoading] = useState(true);
+const [ip, setIp] = useState();
+
+useEffect(() => {
+  axios.get(url)
+    .then(response => {
+      setIp(response.data.ip)
+      setIsLoading(false)
+      console.log(response.data.ip);
+    })
+    .catch(err => {
+      alert(err);
+    })
+}, []);
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>Your IP-Address is {ip}</p>
     </div>
   );
 }
